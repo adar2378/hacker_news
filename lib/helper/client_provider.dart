@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:hacker_news/misc/constants.dart';
 
-class ClientHelper {
+class ClientProvider {
   static Dio getClient(String baseUrl) {
     final options = BaseOptions(
       baseUrl: baseUrl,
