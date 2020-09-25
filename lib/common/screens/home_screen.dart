@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hacker_news/modules/news_module/screens/news_screen.dart';
 import 'package:hacker_news/modules/search_module/screens/search_screen.dart';
+import 'package:hacker_news/styles/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
               currentIndex = value;
             });
           },
-          selectedItemColor: Colors.orange.shade700,
+          selectedItemColor: HNColors.primaryColor,
           selectedLabelStyle: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w600,
