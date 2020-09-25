@@ -15,7 +15,7 @@ class Comments extends StatefulWidget {
   _CommentsState createState() => _CommentsState();
 }
 
-class _CommentsState extends State<Comments> {
+class _CommentsState extends State<Comments> with AutomaticKeepAliveClientMixin {
   CommentBloc commentBloc;
   @override
   void initState() {
@@ -31,61 +31,67 @@ class _CommentsState extends State<Comments> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<CommentBloc, CommentState>(
       cubit: commentBloc,
       builder: (context, state) {
         if (state is CommentLoading)
           return CircularProgressIndicator();
         else if (state is CommentData && state.hasData) {
-          return ListView.builder(
-              itemCount: state.comments.length,
-              itemBuilder: (context, index) {
-                final comment = state.comments[index];
-                return ListTile(
-                  onTap: () {
-                    if (comment.childComments != null && comment.childComments.length > 0)
-                      Navigator.pushNamed(context, Routes.moreComments, arguments: comment);
-                    else
-                      return null;
-                  },
-                  leading: Icon(Icons.comment),
-                  title: Row(
-                    children: <Widget>[
-                      Text(
-                        (comment.author ?? "") + ", ",
-                        style: FontStyles.caption.copyWith(
-                          color: Colors.brown,
-                        ),
-                      ),
-                      Text(comment.time == null ? "" : DataTransformer.fuzzyDateTime(comment.time),
-                          style: FontStyles.caption),
-                    ],
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      HtmlWidget(
-                        comment.text ?? "",
-                        textStyle: Theme.of(context).textTheme.bodyText1,
-                      ),
+          return Scrollbar(
+            child: ListView.builder(
+                itemCount: state.comments.length,
+                itemBuilder: (context, index) {
+                  final comment = state.comments[index];
+                  return ListTile(
+                    onTap: () {
                       if (comment.childComments != null && comment.childComments.length > 0)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            comment.childComments.length.toString() + " replies",
-                            style: Theme.of(context).textTheme.button.copyWith(
-                                  color: Colors.blue,
-                                  decoration: TextDecoration.underline,
-                                ),
+                        Navigator.pushNamed(context, Routes.moreComments, arguments: comment);
+                      else
+                        return null;
+                    },
+                    leading: Icon(Icons.comment),
+                    title: Row(
+                      children: <Widget>[
+                        Text(
+                          (comment.author ?? "") + ", ",
+                          style: FontStyles.caption.copyWith(
+                            color: Colors.brown,
                           ),
                         ),
-                    ],
-                  ),
-                );
-              });
+                        Text(comment.time == null ? "" : DataTransformer.fuzzyDateTime(comment.time),
+                            style: FontStyles.caption),
+                      ],
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        HtmlWidget(
+                          comment.text ?? "",
+                          textStyle: Theme.of(context).textTheme.bodyText1,
+                        ),
+                        if (comment.childComments != null && comment.childComments.length > 0)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              comment.childComments.length.toString() + " replies",
+                              style: Theme.of(context).textTheme.button.copyWith(
+                                    color: Colors.blue,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  );
+                }),
+          );
         } else
           return Container();
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

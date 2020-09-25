@@ -86,23 +86,30 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> with SingleTicker
       ),
       body: Column(
         children: <Widget>[
-          SizedBox(
-            height: 4,
-          ),
-          Center(
-            child: CupertinoSlidingSegmentedControl(
-              groupValue: groupValue,
-              children: {0: Text("News"), 1: Text("Comments (${widget.article.commentCount})")},
-              onValueChanged: (v) {
-                setState(() {
-                  groupValue = v;
-                  tabController.animateTo(v);
-                });
-              },
+          Container(
+            color: Colors.white,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 4,
+                ),
+                Center(
+                  child: CupertinoSlidingSegmentedControl(
+                    groupValue: groupValue,
+                    children: {0: Text("News"), 1: Text("Comments (${widget.article.commentCount})")},
+                    onValueChanged: (v) {
+                      setState(() {
+                        groupValue = v;
+                        tabController.animateTo(v);
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+              ],
             ),
-          ),
-          SizedBox(
-            height: 12,
           ),
           Divider(
             height: 2,

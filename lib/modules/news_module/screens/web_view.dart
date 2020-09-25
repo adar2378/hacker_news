@@ -11,7 +11,7 @@ class NewsWebView extends StatefulWidget {
   _NewsWebViewState createState() => _NewsWebViewState();
 }
 
-class _NewsWebViewState extends State<NewsWebView> {
+class _NewsWebViewState extends State<NewsWebView> with AutomaticKeepAliveClientMixin {
   final Completer<WebViewController> _controller = Completer<WebViewController>();
 
   @override
@@ -21,6 +21,7 @@ class _NewsWebViewState extends State<NewsWebView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return WebView(
       initialUrl: widget.url,
       javascriptMode: JavascriptMode.unrestricted,
@@ -36,4 +37,7 @@ class _NewsWebViewState extends State<NewsWebView> {
       gestureNavigationEnabled: true,
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
