@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hacker_news/modules/news_module/screens/news_screen.dart';
+import 'package:hacker_news/modules/search_module/screens/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -10,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
-  final screens = [NewScreen(), Container()];
+  final screens = [NewScreen(), SearchScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

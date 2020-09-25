@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
         scaffoldBackgroundColor: Colors.white,
-        primaryColor: Colors.blue,
+        primaryColor: Colors.orange.shade700,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: Routes.home,

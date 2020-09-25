@@ -13,6 +13,10 @@ class FontStyles {
     fontWeight: FontWeight.bold,
   );
 
+  /// TextStyle(
+  ///  color: Colors.black45,
+  ///  fontSize: 12,
+  /// )
   static TextStyle caption = TextStyle(
     color: Colors.black45,
     fontSize: 12,

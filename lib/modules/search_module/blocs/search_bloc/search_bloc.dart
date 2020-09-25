@@ -22,7 +22,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<Transition<SearchEvent, SearchState>> transformEvents(Stream<SearchEvent> events, transitionFn) {
     final nonDebounceStream = events.where((event) => event is! SearchFetch);
     final debounceStream =
-        events.where((event) => event is SearchFetch).distinct().debounceTime(Duration(milliseconds: 500));
+        events.where((event) => event is SearchFetch).debounceTime(Duration(milliseconds: 500)).distinct((a, b) {
+      if (a is SearchFetch && b is SearchFetch) {
+        return a.query == b.query;
+      } else
+        return false;
+    });
     return super.transformEvents(MergeStream([nonDebounceStream, debounceStream]), transitionFn);
   }
 
