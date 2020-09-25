@@ -26,20 +26,30 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       try {
         final client = ClientProvider.getClient(Constants.hackerNBaseUrl);
         final articles = await _newsRepo.fetchTopStories(client);
-        final requests = articles.map((articleId) {
-          return compute(getArticle, articleId);
-        }).toList();
-
-        final results = await Future.wait(requests);
+        final results = await compute(_getArticles, articles);
         final transformed = DataTransformer.articleToArticleAdapter(results);
         yield NewsStateData(hasData: transformed.length != null, articles: transformed);
       } catch (e) {
+        print(e.toString());
         yield NewsStateError("Failed to process request!");
       }
     }
   }
 
-  static Future<Article> getArticle(String id) {
+  static Future<List<Article>> _getArticles(List<String> artcleIds) async {
+    try {
+      final requests = artcleIds.map((articleId) async {
+        return await _getArticle(articleId);
+      }).toList();
+
+      final results = await Future.wait(requests);
+      return results;
+    } catch (e) {
+      throw (e);
+    }
+  }
+
+  static Future<Article> _getArticle(String id) {
     final client = ClientProvider.getClient(Constants.hackerNBaseUrl);
     try {
       final article = _newsRepo.fetchSingleArticle(client, id);

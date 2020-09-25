@@ -44,6 +44,8 @@ class _NewScreenState extends State<NewScreen> {
               return CircularProgressIndicator();
             } else if (state is NewsStateData && state.hasData) {
               return ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: state.articles.length,
                   itemBuilder: (context, index) {
                     final article = state.articles[index];

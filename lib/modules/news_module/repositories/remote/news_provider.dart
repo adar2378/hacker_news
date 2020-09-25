@@ -4,7 +4,11 @@ import 'package:hacker_news/modules/news_module/models/article.dart';
 class NewsProvider {
   Future<List<String>> fetchTopStories(Dio client) async {
     try {
-      final response = await client.get("/v0/topstories/orderBy=\"\$key\"&limitToFirst=25");
+      final response = await client.get("/v0/topstories.json", queryParameters: {
+        "orderBy": "\"\$key\"",
+        "limitToFirst": "25",
+        "print": "pretty",
+      });
       final results = List<String>.from(response.data.map((x) => x.toString()));
       return results;
     } catch (e) {
