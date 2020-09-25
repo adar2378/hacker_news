@@ -38,8 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.w600,
           ),
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.star), title: Text("Top News")),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text("Settings")),
+            BottomNavigationBarItem(icon: Icon(Icons.star), title: Text("Top Stories")),
+            BottomNavigationBarItem(icon: Icon(Icons.search), title: Text("Search")),
           ],
         ),
       ),

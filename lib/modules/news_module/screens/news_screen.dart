@@ -38,7 +38,7 @@ class _NewScreenState extends State<NewScreen> {
         Padding(
           padding: const EdgeInsets.only(left: 16.0),
           child: Text(
-            "Top News",
+            "Top Stories",
             style: FontStyles.title2,
           ),
         ),
