@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:hacker_news/common/widgets/listview_loader.dart';
+import 'package:hacker_news/common/widgets/not_found.dart';
 import 'package:hacker_news/helper/data_transformer.dart';
 import 'package:hacker_news/modules/news_module/adapters/comment_adapter.dart';
 import 'package:hacker_news/modules/news_module/blocs/comment_bloc/comment_bloc.dart';
@@ -57,7 +58,9 @@ class _CommentsState extends State<Comments> with AutomaticKeepAliveClientMixin 
                         Text(
                           (comment.author ?? "") + ", ",
                           style: FontStyles.caption.copyWith(
-                            color: Colors.brown,
+                            color: Colors.brown.shade400,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         Text(comment.time == null ? "" : DataTransformer.fuzzyDateTime(comment.time),
@@ -67,13 +70,18 @@ class _CommentsState extends State<Comments> with AutomaticKeepAliveClientMixin 
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        SizedBox(
+                          height: 4,
+                        ),
                         HtmlWidget(
                           comment.text ?? "",
                           textStyle: Theme.of(context).textTheme.bodyText1,
                         ),
                         if (comment.childComments != null && comment.childComments.length > 0)
                           Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
+                            padding: const EdgeInsets.only(
+                              top: 8.0,
+                            ),
                             child: Text(
                               comment.childComments.length.toString() + " replies",
                               style: Theme.of(context).textTheme.button.copyWith(
@@ -82,10 +90,17 @@ class _CommentsState extends State<Comments> with AutomaticKeepAliveClientMixin 
                                   ),
                             ),
                           ),
+                        SizedBox(
+                          height: 4,
+                        ),
                       ],
                     ),
                   );
                 }),
+          );
+        } else if (state is CommentData && !state.hasData) {
+          return NotFoundWidget(
+            message: "No comments found!",
           );
         } else
           return Container();

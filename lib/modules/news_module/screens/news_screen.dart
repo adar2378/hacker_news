@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hacker_news/common/widgets/listview_loader.dart';
+import 'package:hacker_news/common/widgets/not_found.dart';
 import 'package:hacker_news/modules/news_module/blocs/news_bloc/news_bloc.dart';
 import 'package:hacker_news/modules/news_module/widgets/news_tile.dart';
 import 'package:hacker_news/routes/routes.dart';
@@ -74,15 +75,8 @@ class _NewScreenState extends State<NewScreen> {
             } else if ((state is NewsStateData && !state.hasData) || state is NewsStateError) {
               return Container(
                 height: MediaQuery.of(context).size.height - 160,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset("images/error.png"),
-                    Text(
-                      (state is NewsStateData && !state.hasData) ? "No news found!" : "Sorry, failed to load",
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                  ],
+                child: NotFoundWidget(
+                  message: (state is NewsStateData && !state.hasData) ? "No news found!" : "Sorry, failed to load",
                 ),
               );
             } else

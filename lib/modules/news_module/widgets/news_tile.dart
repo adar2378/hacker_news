@@ -55,8 +55,9 @@ class NewsTile extends StatelessWidget {
                     Text(
                       "${article.author}",
                       style: FontStyles.caption.copyWith(
-                        color: Colors.brown,
+                        color: Colors.brown.shade400,
                         fontSize: 14,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
