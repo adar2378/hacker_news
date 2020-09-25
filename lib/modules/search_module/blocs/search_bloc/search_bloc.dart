@@ -10,12 +10,21 @@ import 'package:hacker_news/misc/constants.dart';
 import 'package:hacker_news/modules/news_module/adapters/article_adapter.dart';
 import 'package:hacker_news/modules/search_module/repositories/remote/search_repo.dart';
 import 'package:meta/meta.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc() : super(SearchInitial());
+
+  @override
+  Stream<Transition<SearchEvent, SearchState>> transformEvents(Stream<SearchEvent> events, transitionFn) {
+    final nonDebounceStream = events.where((event) => event is! SearchFetch);
+    final debounceStream =
+        events.where((event) => event is SearchFetch).distinct().debounceTime(Duration(milliseconds: 500));
+    return super.transformEvents(MergeStream([nonDebounceStream, debounceStream]), transitionFn);
+  }
 
   @override
   Stream<SearchState> mapEventToState(
