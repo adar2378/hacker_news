@@ -1,4 +1,5 @@
 import 'package:hacker_news/modules/news_module/adapters/article_adapter.dart';
+import 'package:hacker_news/modules/news_module/adapters/comment_adapter.dart';
 import 'package:hacker_news/modules/news_module/models/article.dart';
 import 'package:timeago/timeago.dart' as timeAgo;
 
@@ -15,6 +16,22 @@ class DataTransformer {
         time: DateTime.fromMillisecondsSinceEpoch(article.time * 1000).toLocal(),
         sourceUrl: article.url,
         title: article.title,
+      ));
+    });
+
+    return results;
+  }
+
+  static List<CommentAdapter> commentToCommentAdapter(List<NewsData> comments) {
+    var results = <CommentAdapter>[];
+
+    comments.forEach((article) {
+      results.add(CommentAdapter(
+        author: article.by,
+        id: article.id.toString(),
+        childComments: article.kids,
+        text: article.text,
+        time: DateTime.fromMillisecondsSinceEpoch(article.time * 1000).toLocal(),
       ));
     });
 

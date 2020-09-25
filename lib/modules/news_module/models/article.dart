@@ -9,6 +9,7 @@ class NewsData {
     this.title,
     this.type,
     this.url,
+    this.text,
   });
 
   final String by;
@@ -20,6 +21,7 @@ class NewsData {
   final String title;
   final String type;
   final String url;
+  final String text;
 
   NewsData copyWith({
     String by,
@@ -31,6 +33,7 @@ class NewsData {
     String title,
     String type,
     String url,
+    String text,
   }) =>
       NewsData(
         by: by ?? this.by,
@@ -42,6 +45,7 @@ class NewsData {
         title: title ?? this.title,
         type: type ?? this.type,
         url: url ?? this.url,
+        text: text ?? this.text,
       );
 
   factory NewsData.fromJson(Map<String, dynamic> json) => NewsData(
@@ -54,6 +58,7 @@ class NewsData {
         title: json["title"] == null ? null : json["title"],
         type: json["type"] == null ? null : json["type"],
         url: json["url"] == null ? null : json["url"],
+        text: json["text"] == null ? null : json["text"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -66,5 +71,6 @@ class NewsData {
         "title": title == null ? null : title,
         "type": type == null ? null : type,
         "url": url == null ? null : url,
+        "text": text == null ? null : text,
       };
 }
