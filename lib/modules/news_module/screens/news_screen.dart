@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hacker_news/modules/news_module/blocs/news_bloc/news_bloc.dart';
+import 'package:hacker_news/modules/news_module/widgets/news_tile.dart';
 
 class NewScreen extends StatefulWidget {
   @override
@@ -49,8 +50,8 @@ class _NewScreenState extends State<NewScreen> {
                   itemCount: state.articles.length,
                   itemBuilder: (context, index) {
                     final article = state.articles[index];
-                    return ListTile(
-                      title: Text(article.title),
+                    return NewsTile(
+                      article: article,
                     );
                   });
             } else
