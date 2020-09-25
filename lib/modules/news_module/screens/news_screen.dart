@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hacker_news/common/widgets/listview_loader.dart';
 import 'package:hacker_news/modules/news_module/blocs/news_bloc/news_bloc.dart';
 import 'package:hacker_news/modules/news_module/widgets/news_tile.dart';
 import 'package:hacker_news/routes/routes.dart';
@@ -44,7 +45,7 @@ class _NewScreenState extends State<NewScreen> {
           cubit: newsBloc,
           builder: (context, state) {
             if (state is NewsStateLoading) {
-              return CircularProgressIndicator();
+              return ListViewLoader();
             } else if (state is NewsStateData && state.hasData) {
               return ListView.separated(
                   padding: EdgeInsets.symmetric(

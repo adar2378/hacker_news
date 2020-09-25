@@ -28,6 +28,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         final articles = await _newsRepo.fetchTopStories(client);
         final results = await compute(_getArticles, articles);
         final transformed = DataTransformer.articleToArticleAdapter(results);
+        transformed.sort((a, b) => b.time.compareTo(a.time));
         yield NewsStateData(hasData: transformed.length != 0, articles: transformed);
       } catch (e) {
         print(e.toString());
