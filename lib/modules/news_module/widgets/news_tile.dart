@@ -14,8 +14,13 @@ class NewsTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              Text(
+                DataTransformer.fuzzyDateTime(article.time) + " by ",
+                style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      color: Colors.black.withOpacity(.72),
+                    ),
+              ),
               Text(
                 article.author,
                 style: Theme.of(context).textTheme.bodyText2.copyWith(
@@ -54,19 +59,28 @@ class NewsTile extends StatelessWidget {
                             ),
                       ),
                     ),
-                    Text(
-                      " - " + DataTransformer.fuzzyDateTime(article.time),
-                      style: Theme.of(context).textTheme.subtitle2.copyWith(
-                            color: Colors.black.withOpacity(.72),
-                          ),
-                    )
                   ],
                 ),
               ),
               SizedBox(
                 width: 16,
               ),
-              Text(article.commentCount + " comments"),
+              Row(
+                children: <Widget>[
+                  Text(
+                    article.commentCount + " comments",
+                    style: Theme.of(context).textTheme.subtitle2.copyWith(
+                          color: Colors.black.withOpacity(.72),
+                        ),
+                  ),
+                  Text(
+                    " · " + article.point + " points",
+                    style: Theme.of(context).textTheme.subtitle2.copyWith(
+                          color: Colors.black.withOpacity(.72),
+                        ),
+                  ),
+                ],
+              ),
             ],
           ),
         ],

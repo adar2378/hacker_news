@@ -44,10 +44,13 @@ class _NewScreenState extends State<NewScreen> {
             if (state is NewsStateLoading) {
               return CircularProgressIndicator();
             } else if (state is NewsStateData && state.hasData) {
-              return ListView.builder(
+              return ListView.separated(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: state.articles.length,
+                  separatorBuilder: (context, index) {
+                    return Divider();
+                  },
                   itemBuilder: (context, index) {
                     final article = state.articles[index];
                     return NewsTile(
