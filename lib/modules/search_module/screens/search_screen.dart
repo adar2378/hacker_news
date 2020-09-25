@@ -39,12 +39,6 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   @override
-  void didChangeDependencies() {
-    print(MediaQuery.of(context).padding.bottom);
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -92,7 +86,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   } else if (state is SearchData && state.hasData) {
                     return ListView(
                       padding: EdgeInsets.symmetric(
-                        vertical: 24,
+                        vertical: 8,
                       ),
                       children: <Widget>[
                         Padding(
@@ -104,6 +98,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                         ListView.separated(
                           shrinkWrap: true,
+                          padding: EdgeInsets.zero,
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: state.articles.length,
                           separatorBuilder: (context, index) {
