@@ -3,7 +3,7 @@ import 'package:hacker_news/modules/news_module/models/article.dart';
 import 'package:timeago/timeago.dart' as timeAgo;
 
 class DataTransformer {
-  static List<ArticleAdapter> articleToArticleAdapter(List<Article> articles) {
+  static List<ArticleAdapter> articleToArticleAdapter(List<NewsData> articles) {
     var results = <ArticleAdapter>[];
 
     articles.forEach((article) {

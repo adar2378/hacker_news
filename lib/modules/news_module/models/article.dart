@@ -1,11 +1,5 @@
-import 'dart:convert';
-
-Article articleFromJson(String str) => Article.fromJson(json.decode(str));
-
-String articleToJson(Article data) => json.encode(data.toJson());
-
-class Article {
-  Article({
+class NewsData {
+  NewsData({
     this.by,
     this.descendants,
     this.id,
@@ -27,7 +21,7 @@ class Article {
   final String type;
   final String url;
 
-  Article copyWith({
+  NewsData copyWith({
     String by,
     int descendants,
     int id,
@@ -38,7 +32,7 @@ class Article {
     String type,
     String url,
   }) =>
-      Article(
+      NewsData(
         by: by ?? this.by,
         descendants: descendants ?? this.descendants,
         id: id ?? this.id,
@@ -50,7 +44,7 @@ class Article {
         url: url ?? this.url,
       );
 
-  factory Article.fromJson(Map<String, dynamic> json) => Article(
+  factory NewsData.fromJson(Map<String, dynamic> json) => NewsData(
         by: json["by"] == null ? null : json["by"],
         descendants: json["descendants"] == null ? null : json["descendants"],
         id: json["id"] == null ? null : json["id"],

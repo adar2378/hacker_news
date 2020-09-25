@@ -7,7 +7,7 @@ import 'package:hacker_news/helper/data_transformer.dart';
 import 'package:hacker_news/misc/constants.dart';
 import 'package:hacker_news/modules/news_module/adapters/article_adapter.dart';
 import 'package:hacker_news/modules/news_module/models/article.dart';
-import 'package:hacker_news/modules/news_module/repositories/remote/news_repo.dart';
+import 'package:hacker_news/modules/news_module/repositories/remote/news_data_repo.dart';
 
 import 'package:meta/meta.dart';
 
@@ -36,7 +36,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     }
   }
 
-  static Future<List<Article>> _getArticles(List<String> artcleIds) async {
+  static Future<List<NewsData>> _getArticles(List<String> artcleIds) async {
     try {
       final requests = artcleIds.map((articleId) async {
         return await _getArticle(articleId);
@@ -49,10 +49,10 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     }
   }
 
-  static Future<Article> _getArticle(String id) {
+  static Future<NewsData> _getArticle(String id) {
     final client = ClientProvider.getClient(Constants.hackerNBaseUrl);
     try {
-      final article = _newsRepo.fetchSingleArticle(client, id);
+      final article = _newsRepo.fetchSingleNewsData(client, id);
       return article;
     } catch (e) {
       throw (e);

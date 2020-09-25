@@ -18,11 +18,11 @@ class NewsProvider {
     }
   }
 
-  Future<Article> fetchSingleArticle(Dio client, String articleId) async {
+  Future<NewsData> fetchSingleNewData(Dio client, String articleId) async {
     try {
       final response = await client.get("/v0/item/$articleId.json?print=pretty");
-      final article = Article.fromJson(response.data);
-      return article;
+      final newsData = NewsData.fromJson(response.data);
+      return newsData;
     } catch (e) {
       throw (e);
     } finally {

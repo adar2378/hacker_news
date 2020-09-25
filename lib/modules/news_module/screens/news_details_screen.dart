@@ -101,7 +101,7 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> with SingleTicker
             ),
           ),
           SizedBox(
-            height: 8,
+            height: 12,
           ),
           Divider(
             height: 2,
