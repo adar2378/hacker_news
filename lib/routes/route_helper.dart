@@ -7,6 +7,7 @@ import 'package:hacker_news/modules/news_module/screens/news_details_screen.dart
 import 'package:hacker_news/routes/routes.dart';
 
 class RouteHelper {
+  /// Generates [MaterialPageRoute] from [Routes]
   static Route getRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.home:

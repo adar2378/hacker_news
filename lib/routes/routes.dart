@@ -1,3 +1,4 @@
+/// All the named routes are stored here
 class Routes {
   static const home = "/home";
   static const newsDetails = "/home/news_details";

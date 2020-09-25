@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+/// Wrapper around [NewsData] class for articles
 class ArticleAdapter {
   final String id;
   final DateTime time;

@@ -26,11 +26,20 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       yield NewsStateLoading();
       try {
         final client = ClientProvider.getClient(Constants.hackerNBaseUrl);
+        // Fetching ids of the top stories
         final articles = await _newsRepo.fetchTopStories(client);
-        final results = await compute(NDataProcessor.getMultipleNewsData, articles);
-        final transformed = DataTransformer.articleToArticleAdapter(results);
-        transformed.sort((a, b) => b.time.compareTo(a.time));
-        yield NewsStateData(hasData: transformed.length != 0, articles: transformed);
+        if (articles == null || articles.length == 0) {
+          yield NewsStateData(hasData: false, articles: []);
+        } else {
+          // Making the network calls for each comments in a seprate isolate
+          // so that it doesn't block the main UI thread
+          final results = await compute(NDataProcessor.getMultipleNewsData, articles);
+          // Converting the NewsData model to ArticleAdapter
+          final transformed = DataTransformer.articleToArticleAdapter(results);
+          // Sorting according to their time, recent ones stay at top.
+          transformed.sort((a, b) => b.time.compareTo(a.time));
+          yield NewsStateData(hasData: transformed.length != 0, articles: transformed);
+        }
       } catch (e) {
         print(e.toString());
         yield NewsStateError("Failed to process request!");

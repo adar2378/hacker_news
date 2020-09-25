@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+/// Wrapper around [NewsData] class for comments
 class CommentAdapter {
   final String id;
   final String text;

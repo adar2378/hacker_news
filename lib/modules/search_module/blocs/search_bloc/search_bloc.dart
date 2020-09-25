@@ -20,14 +20,18 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   @override
   Stream<Transition<SearchEvent, SearchState>> transformEvents(Stream<SearchEvent> events, transitionFn) {
+    // Leaving other events unchanged
     final nonDebounceStream = events.where((event) => event is! SearchFetch);
+    // Waiting 500 milliseconds for the user input to end before triggering search api
     final debounceStream =
         events.where((event) => event is SearchFetch).debounceTime(Duration(milliseconds: 500)).distinct((a, b) {
+      // Comparing if two SearchFetch events are the same
       if (a is SearchFetch && b is SearchFetch) {
         return a.query == b.query;
       } else
         return false;
     });
+    // Merging the different streams
     return super.transformEvents(MergeStream([nonDebounceStream, debounceStream]), transitionFn);
   }
 
@@ -40,11 +44,16 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
       try {
         final client = ClientProvider.getClient(Constants.algoliaBaseUrl);
+        // getting story ids from search result,
+        // since this api doesn't provide us with comment ids
         final searchResult = await SearchRepo().search(client, event.query);
         if (searchResult.hits != null && searchResult.hits.length > 0) {
+          // if we find any search result, then fetch all the articles
+          // in a seprate isolate
           final results =
               await compute(NDataProcessor.getMultipleNewsData, searchResult.hits.map((e) => e.objectId).toList());
           final stories = DataTransformer.articleToArticleAdapter(results);
+          // sort them by time
           stories.sort((a, b) => b.time.compareTo(a.time));
           yield SearchData(stories.length != 0, stories);
         } else {

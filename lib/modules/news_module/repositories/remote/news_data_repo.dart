@@ -3,6 +3,7 @@ import 'package:hacker_news/modules/news_module/models/article.dart';
 
 import 'news_data_provider.dart';
 
+/// Extra layer on top the of remote data provider
 class NewsRepo {
   NewsProvider _newsProvider;
   NewsRepo() {
