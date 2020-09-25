@@ -7,9 +7,9 @@ class FontStyles {
     color: Colors.black,
     height: 1.5,
   );
-  static final TextStyle title2 = TextStyle(
+  static TextStyle title2 = TextStyle(
     color: Colors.orange.shade700,
-    fontSize: 32,
+    fontSize: 26,
     fontWeight: FontWeight.bold,
   );
 

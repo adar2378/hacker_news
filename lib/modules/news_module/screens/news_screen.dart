@@ -36,7 +36,7 @@ class _NewScreenState extends State<NewScreen> {
           padding: const EdgeInsets.only(left: 16.0),
           child: Text(
             "Top News",
-            style: FontStyles.title,
+            style: FontStyles.title2,
           ),
         ),
         BlocBuilder<NewsBloc, NewsState>(

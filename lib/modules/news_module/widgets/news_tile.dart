@@ -13,12 +13,12 @@ class NewsTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          width: 80,
+          width: 60,
           height: 60,
           child: Align(
             alignment: Alignment.topCenter,
             child: Text(
-              index.toString(),
+              (index + 1).toString(),
               style: FontStyles.title2,
               textAlign: TextAlign.left,
             ),
@@ -47,7 +47,7 @@ class NewsTile extends StatelessWidget {
                   Text(
                     "${article.author}",
                     style: FontStyles.caption.copyWith(
-                      color: Colors.brown.withOpacity(.72),
+                      color: Colors.brown,
                       fontSize: 14,
                     ),
                   ),

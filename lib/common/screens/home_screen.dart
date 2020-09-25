@@ -32,6 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
               currentIndex = value;
             });
           },
+          selectedItemColor: Colors.orange.shade700,
+          selectedLabelStyle: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+          ),
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.star), title: Text("Top News")),
             BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text("Settings")),
