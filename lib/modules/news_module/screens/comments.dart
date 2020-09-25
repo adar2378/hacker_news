@@ -102,7 +102,11 @@ class _CommentsState extends State<Comments> with AutomaticKeepAliveClientMixin 
           return NotFoundWidget(
             message: "No comments found!",
           );
-        } else
+        } else if (state is CommentError)
+          return NotFoundWidget(
+            message: state.errorMessage ?? "",
+          );
+        else
           return Container();
       },
     );

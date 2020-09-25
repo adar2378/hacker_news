@@ -5,6 +5,7 @@ import 'package:hacker_news/modules/news_module/repositories/remote/news_data_re
 import 'client_provider.dart';
 
 class NDataProcessor {
+  /// Creating multiple [Future] based on List of ids
   static Future<List<NewsData>> getMultipleNewsData(List<String> commentIds) async {
     try {
       final requests = commentIds.map((articleId) async {
@@ -18,6 +19,7 @@ class NDataProcessor {
     }
   }
 
+  /// Fetching details of a single story/comment
   static Future<NewsData> _getNewsData(String id) {
     final client = ClientProvider.getClient(Constants.hackerNBaseUrl);
     try {

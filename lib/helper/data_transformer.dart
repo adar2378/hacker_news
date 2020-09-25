@@ -4,6 +4,7 @@ import 'package:hacker_news/modules/news_module/models/article.dart';
 import 'package:timeago/timeago.dart' as timeAgo;
 
 class DataTransformer {
+  /// Transforming [List<NewsData>] to [List<ArticleAdapter>]
   static List<ArticleAdapter> articleToArticleAdapter(List<NewsData> articles) {
     var results = <ArticleAdapter>[];
 
@@ -23,6 +24,7 @@ class DataTransformer {
     return results;
   }
 
+  /// Transforming [List<NewsData>] to [List<CommentAdapter>]
   static List<CommentAdapter> commentToCommentAdapter(List<NewsData> comments) {
     var results = <CommentAdapter>[];
 
@@ -39,6 +41,7 @@ class DataTransformer {
     return results;
   }
 
+  /// Converting normal [DateTime] to fuzzy time
   static String fuzzyDateTime(DateTime dateTime) {
     final result = timeAgo.format(
       dateTime,
