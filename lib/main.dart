@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hacker News',
       theme: ThemeData(
-        textTheme: GoogleFonts.openSansTextTheme(
+        textTheme: GoogleFonts.nunitoTextTheme(
           Theme.of(context).textTheme,
         ),
         scaffoldBackgroundColor: Colors.white,

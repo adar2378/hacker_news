@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hacker_news/modules/news_module/blocs/news_bloc/news_bloc.dart';
 import 'package:hacker_news/modules/news_module/widgets/news_tile.dart';
+import 'package:hacker_news/routes/routes.dart';
 import 'package:hacker_news/styles/font_styles.dart';
 
 class NewScreen extends StatefulWidget {
@@ -53,17 +54,36 @@ class _NewScreenState extends State<NewScreen> {
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: state.articles.length,
                   separatorBuilder: (context, index) {
-                    return SizedBox(
-                      height: 24,
+                    return Divider(
+                      height: 2,
                     );
                   },
                   itemBuilder: (context, index) {
                     final article = state.articles[index];
-                    return NewsTile(
-                      article: article,
-                      index: index,
+                    return InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.newsDetails, arguments: article);
+                      },
+                      child: NewsTile(
+                        article: article,
+                        index: index,
+                      ),
                     );
                   });
+            } else if ((state is NewsStateData && !state.hasData) || state is NewsStateError) {
+              return Container(
+                height: MediaQuery.of(context).size.height - 160,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset("images/error.png"),
+                    Text(
+                      (state is NewsStateData && !state.hasData) ? "No news found!" : "Sorry, failed to load",
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
+                  ],
+                ),
+              );
             } else
               return Container();
           },
