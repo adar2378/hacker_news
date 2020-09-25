@@ -12,3 +12,10 @@ class CommentError extends CommentState {
 
   CommentError(this.errorMessage);
 }
+
+class CommentData extends CommentState {
+  final bool hasData;
+  final List<CommentAdapter> comments;
+
+  CommentData(this.hasData, this.comments);
+}

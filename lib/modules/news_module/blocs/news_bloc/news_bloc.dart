@@ -28,7 +28,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         final articles = await _newsRepo.fetchTopStories(client);
         final results = await compute(_getArticles, articles);
         final transformed = DataTransformer.articleToArticleAdapter(results);
-        yield NewsStateData(hasData: transformed.length != null, articles: transformed);
+        yield NewsStateData(hasData: transformed.length != 0, articles: transformed);
       } catch (e) {
         print(e.toString());
         yield NewsStateError("Failed to process request!");
