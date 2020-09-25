@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hacker_news/routes/route_helper.dart';
 import 'package:hacker_news/routes/routes.dart';
-import 'package:hacker_news/styles/colors.dart';
 
 void main() {
   runApp(MyApp());

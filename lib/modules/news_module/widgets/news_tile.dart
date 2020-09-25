@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hacker_news/helper/data_transformer.dart';
 import 'package:hacker_news/modules/news_module/adapters/article_adapter.dart';
+import 'package:hacker_news/styles/font_styles.dart';
 
 class NewsTile extends StatelessWidget {
   final ArticleAdapter article;
@@ -8,83 +9,73 @@ class NewsTile extends StatelessWidget {
   const NewsTile({Key key, this.article, this.index}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          width: 80,
+          height: 60,
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Text(
+              index.toString(),
+              style: FontStyles.title2,
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                DataTransformer.fuzzyDateTime(article.time) + " by ",
-                style: Theme.of(context).textTheme.subtitle2.copyWith(
-                      color: Colors.black.withOpacity(.72),
-                    ),
-              ),
-              Text(
-                article.author,
-                style: Theme.of(context).textTheme.bodyText2.copyWith(
-                      color: Colors.brown,
-                    ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Text(
-            article.title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.left,
-            style: Theme.of(context).textTheme.headline5,
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: Text(
-                        DataTransformer.urlShortner(
-                          article.sourceUrl,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.subtitle2.copyWith(
-                              color: Colors.black.withOpacity(.72),
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: 16,
+                article.title,
+                style: FontStyles.title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
               Row(
                 children: <Widget>[
                   Text(
-                    article.commentCount + " comments",
-                    style: Theme.of(context).textTheme.subtitle2.copyWith(
-                          color: Colors.black.withOpacity(.72),
-                        ),
+                    DataTransformer.urlShortner(article.sourceUrl),
+                    style: FontStyles.caption.copyWith(
+                      color: Colors.black.withOpacity(.72),
+                      fontSize: 14,
+                    ),
                   ),
+                  Text(" by "),
                   Text(
-                    " · " + article.point + " points",
-                    style: Theme.of(context).textTheme.subtitle2.copyWith(
-                          color: Colors.black.withOpacity(.72),
-                        ),
+                    "${article.author}",
+                    style: FontStyles.caption.copyWith(
+                      color: Colors.brown.withOpacity(.72),
+                      fontSize: 14,
+                    ),
                   ),
                 ],
               ),
+              SizedBox(
+                height: 4,
+              ),
+              Row(
+                children: <Widget>[
+                  Text(
+                    "${article.point} points",
+                    style: FontStyles.caption,
+                  ),
+                  Text(
+                    " · ${article.commentCount} comments",
+                    style: FontStyles.caption,
+                  ),
+                  Text(
+                    " · ${DataTransformer.fuzzyDateTime(article.time)}",
+                    style: FontStyles.caption,
+                  ),
+                ],
+              )
             ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

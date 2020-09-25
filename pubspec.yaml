@@ -33,6 +33,7 @@ dependencies:
   flutter_bloc: ^6.0.5
   google_fonts: ^1.1.0
   timeago: ^2.0.27
+  webview_flutter: ^0.3.24
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hacker_news/modules/news_module/blocs/news_bloc/news_bloc.dart';
 import 'package:hacker_news/modules/news_module/widgets/news_tile.dart';
+import 'package:hacker_news/styles/font_styles.dart';
 
 class NewScreen extends StatefulWidget {
   @override
@@ -35,7 +36,7 @@ class _NewScreenState extends State<NewScreen> {
           padding: const EdgeInsets.only(left: 16.0),
           child: Text(
             "Top News",
-            style: Theme.of(context).textTheme.headline5,
+            style: FontStyles.title,
           ),
         ),
         BlocBuilder<NewsBloc, NewsState>(
@@ -45,16 +46,22 @@ class _NewScreenState extends State<NewScreen> {
               return CircularProgressIndicator();
             } else if (state is NewsStateData && state.hasData) {
               return ListView.separated(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 24,
+                  ),
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: state.articles.length,
                   separatorBuilder: (context, index) {
-                    return Divider();
+                    return SizedBox(
+                      height: 24,
+                    );
                   },
                   itemBuilder: (context, index) {
                     final article = state.articles[index];
                     return NewsTile(
                       article: article,
+                      index: index,
                     );
                   });
             } else
