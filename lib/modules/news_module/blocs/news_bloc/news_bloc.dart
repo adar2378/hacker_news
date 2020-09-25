@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
-import 'package:hacker_news/help/http_client/client_injection.dart';
+import 'package:hacker_news/helper/client_provider.dart';
 import 'package:hacker_news/helper/data_transformer.dart';
 import 'package:hacker_news/misc/constants.dart';
-import 'package:hacker_news/news_module/adapters/article_adapter.dart';
-import 'package:hacker_news/news_module/models/article.dart';
-import 'package:hacker_news/news_module/repositories/remote/news_repo.dart';
+import 'package:hacker_news/modules/news_module/adapters/article_adapter.dart';
+import 'package:hacker_news/modules/news_module/models/article.dart';
+import 'package:hacker_news/modules/news_module/repositories/remote/news_repo.dart';
+
 import 'package:meta/meta.dart';
 
 part 'news_event.dart';

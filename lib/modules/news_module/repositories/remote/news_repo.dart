@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:hacker_news/news_module/models/article.dart';
-import 'package:hacker_news/news_module/repositories/remote/news_provider.dart';
+import 'package:hacker_news/modules/news_module/models/article.dart';
+
+import 'news_provider.dart';
 
 class NewsRepo {
   NewsProvider _newsProvider;

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-
-import 'package:hacker_news/news_module/models/article.dart';
+import 'package:hacker_news/modules/news_module/models/article.dart';
 
 class NewsProvider {
   Future<List<String>> fetchTopStories(Dio client) async {

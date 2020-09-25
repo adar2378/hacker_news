@@ -1,5 +1,5 @@
-import 'package:hacker_news/news_module/adapters/article_adapter.dart';
-import 'package:hacker_news/news_module/models/article.dart';
+import 'package:hacker_news/modules/news_module/adapters/article_adapter.dart';
+import 'package:hacker_news/modules/news_module/models/article.dart';
 
 class DataTransformer {
   static List<ArticleAdapter> articleToArticleAdapter(List<Article> articles) {
