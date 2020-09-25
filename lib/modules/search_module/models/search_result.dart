@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final searchResult = searchResultFromJson(jsonString);
-
 import 'dart:convert';
 
 SearchResult searchResultFromJson(String str) => SearchResult.fromJson(json.decode(str));
@@ -76,113 +72,23 @@ class SearchResult {
 
 class Hit {
   Hit({
-    this.createdAt,
-    this.title,
-    this.url,
-    this.author,
-    this.points,
-    this.storyText,
-    this.commentText,
-    this.numComments,
-    this.storyId,
-    this.storyTitle,
-    this.storyUrl,
-    this.parentId,
-    this.createdAtI,
-    this.relevancyScore,
-    this.tags,
     this.objectId,
   });
 
-  final DateTime createdAt;
-  final String title;
-  final String url;
-  final String author;
-  final int points;
-  final String storyText;
-  final dynamic commentText;
-  final int numComments;
-  final dynamic storyId;
-  final dynamic storyTitle;
-  final dynamic storyUrl;
-  final dynamic parentId;
-  final int createdAtI;
-  final int relevancyScore;
-  final List<String> tags;
   final String objectId;
 
   Hit copyWith({
-    DateTime createdAt,
-    String title,
-    String url,
-    String author,
-    int points,
-    String storyText,
-    dynamic commentText,
-    int numComments,
-    dynamic storyId,
-    dynamic storyTitle,
-    dynamic storyUrl,
-    dynamic parentId,
-    int createdAtI,
-    int relevancyScore,
-    List<String> tags,
     String objectId,
   }) =>
       Hit(
-        createdAt: createdAt ?? this.createdAt,
-        title: title ?? this.title,
-        url: url ?? this.url,
-        author: author ?? this.author,
-        points: points ?? this.points,
-        storyText: storyText ?? this.storyText,
-        commentText: commentText ?? this.commentText,
-        numComments: numComments ?? this.numComments,
-        storyId: storyId ?? this.storyId,
-        storyTitle: storyTitle ?? this.storyTitle,
-        storyUrl: storyUrl ?? this.storyUrl,
-        parentId: parentId ?? this.parentId,
-        createdAtI: createdAtI ?? this.createdAtI,
-        relevancyScore: relevancyScore ?? this.relevancyScore,
-        tags: tags ?? this.tags,
         objectId: objectId ?? this.objectId,
       );
 
   factory Hit.fromJson(Map<String, dynamic> json) => Hit(
-        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-        title: json["title"] == null ? null : json["title"],
-        url: json["url"] == null ? null : json["url"],
-        author: json["author"] == null ? null : json["author"],
-        points: json["points"] == null ? null : json["points"],
-        storyText: json["story_text"] == null ? null : json["story_text"],
-        commentText: json["comment_text"],
-        numComments: json["num_comments"] == null ? null : json["num_comments"],
-        storyId: json["story_id"],
-        storyTitle: json["story_title"],
-        storyUrl: json["story_url"],
-        parentId: json["parent_id"],
-        createdAtI: json["created_at_i"] == null ? null : json["created_at_i"],
-        relevancyScore: json["relevancy_score"] == null ? null : json["relevancy_score"],
-        tags: json["_tags"] == null ? null : List<String>.from(json["_tags"].map((x) => x)),
         objectId: json["objectID"] == null ? null : json["objectID"],
       );
 
   Map<String, dynamic> toJson() => {
-        "created_at": createdAt == null ? null : createdAt.toIso8601String(),
-        "title": title == null ? null : title,
-        "url": url == null ? null : url,
-        "author": author == null ? null : author,
-        "points": points == null ? null : points,
-        "story_text": storyText == null ? null : storyText,
-        "comment_text": commentText,
-        "num_comments": numComments == null ? null : numComments,
-        "story_id": storyId,
-        "story_title": storyTitle,
-        "story_url": storyUrl,
-        "parent_id": parentId,
-        "created_at_i": createdAtI == null ? null : createdAtI,
-        "relevancy_score": relevancyScore == null ? null : relevancyScore,
-        "_tags": tags == null ? null : List<dynamic>.from(tags.map((x) => x)),
         "objectID": objectId == null ? null : objectId,
       };
 }
