@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hacker_news/helper/data_transformer.dart';
 import 'package:hacker_news/modules/news_module/adapters/article_adapter.dart';
-import 'package:hacker_news/modules/news_module/widgets/news_tile.dart';
 import 'package:hacker_news/styles/font_styles.dart';
 
+import 'comments.dart';
 import 'web_view.dart';
 
 class NewsDetailsScreen extends StatefulWidget {
@@ -40,6 +40,7 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> with SingleTicker
       appBar: AppBar(
         textTheme: Theme.of(context).textTheme,
         title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
               widget.article.title,
@@ -114,7 +115,7 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> with SingleTicker
                 NewsWebView(
                   url: widget.article.sourceUrl,
                 ),
-                Container(),
+                Comments(comments: widget.article.comments),
               ],
             ),
           ),

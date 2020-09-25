@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 class ArticleAdapter {
   final String id;
   final DateTime time;
@@ -8,6 +10,7 @@ class ArticleAdapter {
   final String title;
   final String sourceUrl;
   final String author;
+  final List<int> comments;
   ArticleAdapter({
     this.id,
     this.time,
@@ -16,6 +19,7 @@ class ArticleAdapter {
     this.title,
     this.sourceUrl,
     this.author,
+    this.comments,
   });
 
   ArticleAdapter copyWith({
@@ -26,6 +30,7 @@ class ArticleAdapter {
     String title,
     String sourceUrl,
     String author,
+    List<int> comments,
   }) {
     return ArticleAdapter(
       id: id ?? this.id,
@@ -35,6 +40,7 @@ class ArticleAdapter {
       title: title ?? this.title,
       sourceUrl: sourceUrl ?? this.sourceUrl,
       author: author ?? this.author,
+      comments: comments ?? this.comments,
     );
   }
 
@@ -47,6 +53,7 @@ class ArticleAdapter {
       'title': title,
       'sourceUrl': sourceUrl,
       'author': author,
+      'comments': comments,
     };
   }
 
@@ -61,6 +68,7 @@ class ArticleAdapter {
       title: map['title'],
       sourceUrl: map['sourceUrl'],
       author: map['author'],
+      comments: List<int>.from(map['comments']),
     );
   }
 
@@ -70,7 +78,7 @@ class ArticleAdapter {
 
   @override
   String toString() {
-    return 'ArticleAdapter(id: $id, time: $time, point: $point, commentCount: $commentCount, title: $title, sourceUrl: $sourceUrl, author: $author)';
+    return 'ArticleAdapter(id: $id, time: $time, point: $point, commentCount: $commentCount, title: $title, sourceUrl: $sourceUrl, author: $author, comments: $comments)';
   }
 
   @override
@@ -84,7 +92,8 @@ class ArticleAdapter {
         o.commentCount == commentCount &&
         o.title == title &&
         o.sourceUrl == sourceUrl &&
-        o.author == author;
+        o.author == author &&
+        listEquals(o.comments, comments);
   }
 
   @override
@@ -95,6 +104,7 @@ class ArticleAdapter {
         commentCount.hashCode ^
         title.hashCode ^
         sourceUrl.hashCode ^
-        author.hashCode;
+        author.hashCode ^
+        comments.hashCode;
   }
 }

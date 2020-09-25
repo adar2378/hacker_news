@@ -26,6 +26,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
         final stringified = event.commentIds.map((e) => e.toString()).toList();
         final results = await compute(_getComments, stringified);
         final comments = DataTransformer.commentToCommentAdapter(results);
+        comments.sort((a, b) => b.time.compareTo(a.time));
         yield CommentData(comments.length != 0, comments);
       } catch (e) {
         print(e.toString());

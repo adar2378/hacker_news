@@ -16,6 +16,7 @@ class DataTransformer {
         time: DateTime.fromMillisecondsSinceEpoch(article.time * 1000).toLocal(),
         sourceUrl: article.url,
         title: article.title,
+        comments: article.kids,
       ));
     });
 
