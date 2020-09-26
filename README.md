@@ -23,3 +23,5 @@ so that this work doesn't block our UI thread.
 
 - run `flutter pub get` to get the needed package
 - run `flutter run` to run the application
+
+P.S: Diagrams and screenshots can be found inside `root/diagrams` and `root/screenshots` folders repsectively.
