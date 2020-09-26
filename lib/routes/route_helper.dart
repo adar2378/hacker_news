@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hacker_news/common/screens/home_screen.dart';
+import 'package:hacker_news/common/screens/splash.dart';
 import 'package:hacker_news/common/screens/unknown_screen.dart';
 import 'package:hacker_news/modules/news_module/screens/more_comments.dart';
 import 'package:hacker_news/modules/news_module/screens/news_details_screen.dart';
@@ -10,6 +11,9 @@ class RouteHelper {
   /// Generates [MaterialPageRoute] from [Routes]
   static Route getRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.splash:
+        return _buildRoute(settings, SplashScreen());
+        break;
       case Routes.home:
         return _buildRoute(settings, HomeScreen());
         break;

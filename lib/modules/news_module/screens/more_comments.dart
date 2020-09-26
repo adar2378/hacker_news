@@ -22,7 +22,7 @@ class MoreComments extends StatelessWidget {
               height: 24,
               child: Stack(
                 fit: StackFit.expand,
-                overflow: Overflow.clip,
+                overflow: Overflow.clip, // clipping the overflow of the htmlwidget
                 children: <Widget>[
                   Positioned(
                     top: 0,
