@@ -50,7 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(
-              height: 36,
+              height: 56,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16.0),

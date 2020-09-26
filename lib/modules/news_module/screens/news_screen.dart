@@ -30,10 +30,11 @@ class _NewScreenState extends State<NewScreen> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.zero,
       shrinkWrap: true,
       children: <Widget>[
         SizedBox(
-          height: 20,
+          height: 56,
         ),
         Padding(
           padding: const EdgeInsets.only(left: 16.0),
