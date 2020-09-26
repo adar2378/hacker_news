@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hacker_news/styles/colors.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class NewsWebView extends StatefulWidget {
@@ -13,6 +14,7 @@ class NewsWebView extends StatefulWidget {
 
 class _NewsWebViewState extends State<NewsWebView> with AutomaticKeepAliveClientMixin {
   final Completer<WebViewController> _controller = Completer<WebViewController>();
+  bool loading = false;
 
   @override
   void dispose() {
@@ -22,19 +24,44 @@ class _NewsWebViewState extends State<NewsWebView> with AutomaticKeepAliveClient
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return WebView(
-      initialUrl: widget.url,
-      javascriptMode: JavascriptMode.unrestricted,
-      onWebViewCreated: (WebViewController webViewController) {
-        _controller.complete(webViewController);
-      },
-      onPageStarted: (String url) {
-        print('Page started loading: $url');
-      },
-      onPageFinished: (String url) {
-        print('Page finished loading: $url');
-      },
-      gestureNavigationEnabled: true,
+    return Column(
+      children: <Widget>[
+        if (loading)
+          LinearProgressIndicator(
+            valueColor: AlwaysStoppedAnimation(HNColors.primaryColor),
+          ),
+        Expanded(
+          child: WebView(
+            initialUrl: widget.url,
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (WebViewController webViewController) {
+              _controller.complete(webViewController);
+            },
+            onPageStarted: (String url) {
+              setState(() {
+                loading = true;
+              });
+              print('Page started loading: $url');
+            },
+            onPageFinished: (String url) {
+              setState(() {
+                loading = false;
+              });
+              print('Page finished loading: $url');
+            },
+            onWebResourceError: (error) {
+              Scaffold.of(context).showSnackBar(SnackBar(
+                content: Text("Failed to load"),
+                behavior: SnackBarBehavior.floating,
+              ));
+              setState(() {
+                loading = true;
+              });
+            },
+            gestureNavigationEnabled: true,
+          ),
+        ),
+      ],
     );
   }
 
