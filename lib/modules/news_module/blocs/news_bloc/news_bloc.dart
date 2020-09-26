@@ -7,7 +7,6 @@ import 'package:hacker_news/helper/data_transformer.dart';
 import 'package:hacker_news/helper/news_data_processor.dart';
 import 'package:hacker_news/misc/constants.dart';
 import 'package:hacker_news/modules/news_module/adapters/article_adapter.dart';
-import 'package:hacker_news/modules/news_module/models/article.dart';
 import 'package:hacker_news/modules/news_module/repositories/remote/news_data_repo.dart';
 
 import 'package:meta/meta.dart';

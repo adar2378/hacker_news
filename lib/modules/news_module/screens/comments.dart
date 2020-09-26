@@ -4,7 +4,6 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:hacker_news/common/widgets/listview_loader.dart';
 import 'package:hacker_news/common/widgets/not_found.dart';
 import 'package:hacker_news/helper/data_transformer.dart';
-import 'package:hacker_news/modules/news_module/adapters/comment_adapter.dart';
 import 'package:hacker_news/modules/news_module/blocs/comment_bloc/comment_bloc.dart';
 import 'package:hacker_news/routes/routes.dart';
 import 'package:hacker_news/styles/font_styles.dart';
