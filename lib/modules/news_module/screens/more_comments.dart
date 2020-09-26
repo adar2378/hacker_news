@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:hacker_news/helper/data_transformer.dart';
 import 'package:hacker_news/modules/news_module/adapters/comment_adapter.dart';
 import 'package:hacker_news/styles/font_styles.dart';
@@ -17,11 +18,25 @@ class MoreComments extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              comment.text,
-              style: FontStyles.title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+            SizedBox(
+              height: 24,
+              child: Stack(
+                fit: StackFit.expand,
+                overflow: Overflow.clip,
+                children: <Widget>[
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: HtmlWidget(
+                      comment.text,
+                      textStyle: FontStyles.title,
+
+                      // maxLines: 1,
+                      // overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
             ),
             Row(
               children: <Widget>[
