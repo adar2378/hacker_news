@@ -1,16 +1,25 @@
-# hacker_news
+# Hacker News
 
-A new Flutter project.
+Hacker News is a very basic application with the following functionality
 
-## Getting Started
+ - Shows top 25 stories
+ - User can search stories
+ - View the story in a webview along with the related comments and replies
 
-This project is a starting point for a Flutter application.
+## Structure
 
-A few resources to get you started if this is your first Flutter project:
+- All the blocs, screens, widgets shared by the application are placed in `common` folder
+- Inside `modules` folder for each module, `Search` and `Top Stories`, there are blocs, repositories, screens, models, adapters, widgets etc.
+- `TextStyle`, `Color` etc are stored in `styles` folder.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Basic API call flow
+- First we try to collect the story ids in a `List`
+- Then we fetch the details of the stories and wait for them to retrieve all the data
+- Since this is resource-heavy work, we put this in a separate isolate
+so that this work doesn't block our UI thread.
+- After fetching all the needed data, we change the data according to our need and feed it to the UI.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Running the code
+
+- run `flutter pub get` to get the needed package
+- run `flutter run` to run the application
