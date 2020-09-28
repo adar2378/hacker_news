@@ -15,7 +15,7 @@ class NewsWebView extends StatefulWidget {
 class _NewsWebViewState extends State<NewsWebView> with AutomaticKeepAliveClientMixin {
   final Completer<WebViewController> _controller = Completer<WebViewController>();
   bool loading = false;
-
+  bool shown = false;
   @override
   void dispose() {
     super.dispose();
@@ -50,12 +50,14 @@ class _NewsWebViewState extends State<NewsWebView> with AutomaticKeepAliveClient
               print('Page finished loading: $url');
             },
             onWebResourceError: (error) {
-              Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text("Failed to load"),
-                behavior: SnackBarBehavior.floating,
-              ));
+              if (!shown)
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text("Having trouble loading the URL"),
+                  behavior: SnackBarBehavior.floating,
+                ));
               setState(() {
-                loading = true;
+                if (!shown) shown = true;
+                loading = false;
               });
             },
             gestureNavigationEnabled: true,
