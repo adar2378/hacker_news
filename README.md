@@ -1,10 +1,20 @@
 # Hacker News
 
+
+<p align="center">
+  <img src="https://github.com/adar2378/hacker_news/raw/main/images/android_logo.png" width="460/>
+</p>
+
 Hacker News is a very basic application with the following functionality
 
  - Shows top 25 stories
  - User can search stories
  - View the story in a webview along with the related comments and replies
+
+## Screenshots
+<img src="https://github.com/adar2378/hacker_news/raw/main/screenshots/top_stories.png" width="250" height="500"><img src="https://github.com/adar2378/hacker_news/raw/main/screenshots/search.png" width="250" height="500">
+<img src="https://raw.githubusercontent.com/adar2378/hacker_news/main/screenshots/replies.png" width="250" height="500"><img src="https://github.com/adar2378/hacker_news/raw/main/screenshots/article_comments.png" width="250" height="500">
+<img src="https://github.com/adar2378/hacker_news/raw/main/screenshots/article_details.png" width="250" height="500">
 
 ## Structure
 
