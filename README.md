@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src="https://github.com/adar2378/hacker_news/raw/main/images/android_logo.png" width="460/>
+  <img src="https://github.com/adar2378/hacker_news/raw/main/images/android_logo.png" width="460"/>
 </p>
 
 Hacker News is a very basic application with the following functionality
