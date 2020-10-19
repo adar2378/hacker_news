@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src="https://github.com/adar2378/hacker_news/raw/main/images/android_logo.png" width="460"/>
+  <img src="https://github.com/adar2378/hacker_news/raw/main/images/android_logo.png" width="250"/>
 </p>
 
 Hacker News is a very basic application with the following functionality
@@ -30,7 +30,7 @@ so that this work doesn't block our UI thread.
 - After fetching all the needed data, we change the data according to our need and feed it to the UI.
 
 <img src="https://github.com/adar2378/hacker_news/raw/main/diagrams/comment_api.jpeg" width="500" height="500"><img src="https://github.com/adar2378/hacker_news/raw/main/diagrams/search_api.jpeg" width="500" height="500">
-<img src="https://github.com/adar2378/hacker_news/raw/main/diagrams/sequece_diagram.jpeg" width="500" height="500"><img src="https://github.com/adar2378/hacker_news/raw/main/diagrams/top_stories.jpeg" width="250" height="500">
+<img src="https://github.com/adar2378/hacker_news/raw/main/diagrams/sequece_diagram.jpeg" width="500" height="500"><img src="https://github.com/adar2378/hacker_news/raw/main/diagrams/top_stories.jpeg" width="500" height="500">
 
 ## Running the code
 
